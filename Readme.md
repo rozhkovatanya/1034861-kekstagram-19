@@ -1,7 +1,7 @@
 # Личный проект «Кекстаграм» [![Build status][travis-image]][travis-url]
 
-* Студент: [Tetyana Rozhkova](https://up.htmlacademy.ru/javascript/19/user/1034861).
-* Наставник: `Неизвестно`.
+- Студент: [Tetyana Rozhkova](https://up.htmlacademy.ru/javascript/19/user/1034861).
+- Наставник: `Дмитрий Полуэктов`.
 
 ---
 
