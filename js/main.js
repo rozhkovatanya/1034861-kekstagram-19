@@ -1,8 +1,8 @@
 'use strict';
 
 var pictureTemplate = document.querySelector('#picture')
-    .content
-    .querySelector('.picture');
+  .content
+  .querySelector('.picture');
 
 var pictures = document.querySelector('.pictures');
 
@@ -43,22 +43,22 @@ var generateComments = function () {
 }
 
 var posts = [];
-  for(var i = 1; i <= 25; i++) {
-    posts.push({
-      url: 'photos/' + i + '.jpg',
-      description: 'Новое фото',
-      likes: Math.floor(Math.random() * 200) + 15,
-      comments: generateComments()
-    });
-  }
+for (var i = 1; i <= 25; i++) {
+  posts.push({
+    url: 'photos/' + i + '.jpg',
+    description: 'Новое фото',
+    likes: Math.floor(Math.random() * 200) + 15,
+    comments: generateComments()
+  });
+}
 
-  for (var j = 0; j < posts.length; j++) {
-    var pictureElement = pictureTemplate.cloneNode(true);
+for (var j = 0; j < posts.length; j++) {
+  var pictureElement = pictureTemplate.cloneNode(true);
 
-    pictureElement.querySelector('.picture__img').src = posts[j].url;
-    pictureElement.querySelector('.picture__likes').textContent = posts[j].likes;
-    pictureElement.querySelector('.picture__comments').textContent = posts[j].comments.length;
+  pictureElement.querySelector('.picture__img').src = posts[j].url;
+  pictureElement.querySelector('.picture__likes').textContent = posts[j].likes;
+  pictureElement.querySelector('.picture__comments').textContent = posts[j].comments.length;
 
-    pictures.appendChild(pictureElement);
+  pictures.appendChild(pictureElement);
 }
 
