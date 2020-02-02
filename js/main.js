@@ -37,10 +37,10 @@ var generateComments = function () {
       avatar: 'img/avatar-' + Math.ceil(Math.floor() * 6) + '.svg',
       message: getRandomElement(POST_COMMENT),
       name: getRandomElement(POST_COMMENT_AUTHOR)
-    })
+    });
   }
   return comments;
-}
+};
 
 var posts = [];
 for (var i = 1; i <= 25; i++) {
