@@ -23,7 +23,7 @@ var generateRandomNumber = function (max) {
 };
 
 var getRandomElement = function (array) {
-  var index = Math.floor(generateRandomNumber(array.length));
+  var index = generateRandomNumber(array.length);
   return array[index];
 };
 
@@ -45,7 +45,7 @@ var generatePosts = function () {
     posts.push({
       url: 'photos/' + i + '.jpg',
       description: 'Новое фото',
-      likes: Math.floor(Math.random() * 200) + 15,
+      likes: generateRandomNumber(200) + 15,
       comments: generateComments()
     });
   }
