@@ -18,9 +18,9 @@ var POST_COMMENT_AUTHOR = [
   'Сын маминой подруги'
 ];
 
-var generateRandomNumber = function(max) {
-  return Math.floor(Math.random() * max)
-}
+var generateRandomNumber = function (max) {
+  return Math.floor(Math.random() * max);
+};
 
 var getRandomElement = function (array) {
   var index = Math.floor(generateRandomNumber(array.length));
@@ -49,34 +49,34 @@ var generatePosts = function () {
       comments: generateComments()
     });
   }
-  return posts
-}
+  return posts;
+};
 
 var createPictureElement = function (post) {
   var pictureElement = document.querySelector('#picture')
   .content
   .querySelector('.picture')
-  .cloneNode(true);;
+  .cloneNode(true);
 
-  var pictureImg = pictureElement.querySelector('.picture__img')
-  var pictureLikes = pictureElement.querySelector('.picture__likes')
-  var pictureComments = pictureElement.querySelector('.picture__comments')
+  var pictureImg = pictureElement.querySelector('.picture__img');
+  var pictureLikes = pictureElement.querySelector('.picture__likes');
+  var pictureComments = pictureElement.querySelector('.picture__comments');
 
-  pictureImg.src = post.url
-  pictureLikes.textContent = post.likes
-  pictureComments.textContent = post.comments.length
+  pictureImg.src = post.url;
+  pictureLikes.textContent = post.likes;
+  pictureComments.textContent = post.comments.length;
 
   return pictureElement;
-}
+};
 
-var renderPosts = function(posts) {
+var renderPosts = function (posts) {
   var pictures = document.querySelector('.pictures');
 
   for (var j = 0; j < posts.length; j++) {
-    var post = posts[j]
-    var pictureElement = createPictureElement(post)
+    var post = posts[j];
+    var pictureElement = createPictureElement(post);
     pictures.appendChild(pictureElement);
   }
-}
+};
 
-renderPosts(generatePosts())
+renderPosts(generatePosts());
