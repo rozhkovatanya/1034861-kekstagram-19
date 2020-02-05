@@ -1,11 +1,5 @@
 'use strict';
 
-var pictureTemplate = document.querySelector('#picture')
-  .content
-  .querySelector('.picture');
-
-var pictures = document.querySelector('.pictures');
-
 var POST_COMMENT = [
   'Всё отлично!',
   'В целом всё неплохо. Но не всё.',
@@ -24,17 +18,20 @@ var POST_COMMENT_AUTHOR = [
   'Сын маминой подруги'
 ];
 
+var generateRandomNumber = function(max) {
+  return Math.floor(Math.random() * max)
+}
+
 var getRandomElement = function (array) {
-  var randomNumber = Math.random() * array.length;
-  var index = Math.floor(randomNumber);
+  var index = Math.floor(generateRandomNumber(array.length));
   return array[index];
 };
 
 var generateComments = function () {
   var comments = [];
-  for (var z = 0; z < Math.floor(Math.random() * 7); z++) {
+  for (var z = 0; z < generateRandomNumber(7); z++) {
     comments.push({
-      avatar: 'img/avatar-' + Math.ceil(Math.floor() * 6) + '.svg',
+      avatar: 'img/avatar-' + generateRandomNumber(5) + 1 + '.svg',
       message: getRandomElement(POST_COMMENT),
       name: getRandomElement(POST_COMMENT_AUTHOR)
     });
@@ -42,23 +39,44 @@ var generateComments = function () {
   return comments;
 };
 
-var posts = [];
-for (var i = 1; i <= 25; i++) {
-  posts.push({
-    url: 'photos/' + i + '.jpg',
-    description: 'Новое фото',
-    likes: Math.floor(Math.random() * 200) + 15,
-    comments: generateComments()
-  });
+var generatePosts = function () {
+  var posts = [];
+  for (var i = 1; i <= 25; i++) {
+    posts.push({
+      url: 'photos/' + i + '.jpg',
+      description: 'Новое фото',
+      likes: Math.floor(Math.random() * 200) + 15,
+      comments: generateComments()
+    });
+  }
+  return posts
 }
 
-for (var j = 0; j < posts.length; j++) {
-  var pictureElement = pictureTemplate.cloneNode(true);
+var createPictureElement = function (post) {
+  var pictureElement = document.querySelector('#picture')
+  .content
+  .querySelector('.picture')
+  .cloneNode(true);;
 
-  pictureElement.querySelector('.picture__img').src = posts[j].url;
-  pictureElement.querySelector('.picture__likes').textContent = posts[j].likes;
-  pictureElement.querySelector('.picture__comments').textContent = posts[j].comments.length;
+  var pictureImg = pictureElement.querySelector('.picture__img')
+  var pictureLikes = pictureElement.querySelector('.picture__likes')
+  var pictureComments = pictureElement.querySelector('.picture__comments')
 
-  pictures.appendChild(pictureElement);
+  pictureImg.src = post.url
+  pictureLikes.textContent = post.likes
+  pictureComments.textContent = post.comments.length
+
+  return pictureElement;
 }
 
+var renderPosts = function(posts) {
+  var pictures = document.querySelector('.pictures');
+
+  for (var j = 0; j < posts.length; j++) {
+    var post = posts[j]
+    var pictureElement = createPictureElement(post)
+    pictures.appendChild(pictureElement);
+  }
+}
+
+renderPosts(generatePosts())
