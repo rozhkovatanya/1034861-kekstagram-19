@@ -31,7 +31,7 @@ var generateComments = function () {
   var comments = [];
   for (var z = 0; z < generateRandomNumber(7); z++) {
     comments.push({
-      avatar: 'img/avatar-' + generateRandomNumber(5) + 1 + '.svg',
+      avatar: 'img/avatar-' + (generateRandomNumber(5) + 1) + '.svg',
       message: getRandomElement(POST_COMMENT),
       name: getRandomElement(POST_COMMENT_AUTHOR)
     });
