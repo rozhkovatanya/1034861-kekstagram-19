@@ -128,7 +128,7 @@ var setFilterValue = function (percents) {
 imgUploadEffects.addEventListener('change', filterChangeHandler);
 
 var findDuplicates = function (arr) {
-  var sortedArr = arr.sort();
+  var sortedArr = [].concat(arr).sort();
   var duplicates = [];
   for (var i = 0; i < sortedArr.length - 1; i++) {
     var current = sortedArr[i];
