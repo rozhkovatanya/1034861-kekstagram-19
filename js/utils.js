@@ -1,15 +1,15 @@
 'use strict';
 
 (function () {
-
-  window.generateRandomNumber = function (max) {
+  var generateRandomNumber = function (max) {
     return Math.floor(Math.random() * max);
   };
-
-  window.getRandomElement = function (array) {
-    var index = window.generateRandomNumber(array.length);
-    return array[index];
+  window.utils = {
+    generateRandomNumber: generateRandomNumber,
+    getRandomArrayElement: function (array) {
+      var index = generateRandomNumber(array.length);
+      return array[index];
+    }
   };
 
-})()
-;
+})();
