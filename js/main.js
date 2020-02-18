@@ -1,3 +1,3 @@
 'use strict';
 
-window.renderPosts(window.generatePosts());
+window.picturePreview.renderPosts(window.data.generatePosts());
