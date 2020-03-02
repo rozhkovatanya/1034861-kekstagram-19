@@ -17,6 +17,11 @@
       pictureLikes.textContent = post.likes;
       pictureComments.textContent = post.comments.length;
 
+      // Here when we render posts we're adding mapping between picture element and globalState
+      window.globalState.postsToImgMapping[post.url] = post;
+      newPicturePreview.dataset.url = post.url;
+
+
       return newPicturePreview;
     },
 
