@@ -18,7 +18,6 @@
       pictureComments.textContent = post.comments.length;
 
       return newPicturePreview;
-
     },
 
     renderPosts: function (posts) {
