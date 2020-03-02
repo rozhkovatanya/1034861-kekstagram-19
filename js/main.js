@@ -1,7 +1,5 @@
 'use strict';
 
-var posts = window.data.generatePosts();
-
-window.bigPicture.render(posts);
-window.picturePreview.renderPosts(posts);
+window.globalState.posts = window.data.generatePosts();
+window.picturePreview.renderPosts(window.globalState.posts);
 
