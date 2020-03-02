@@ -1,7 +1,5 @@
 'use strict';
 
-window.globalState.posts = window.data.generatePosts();
-
 var renderPosts = function (posts) {
   var pictures = document.querySelector('.pictures');
   for (var j = 0; j < posts.length; j++) {
@@ -10,5 +8,12 @@ var renderPosts = function (posts) {
   }
 };
 
-renderPosts(window.globalState.posts);
+window.request.get('https://js.dump.academy/kekstagram/data', function (posts) {
+  window.globalState.posts = posts;
+  renderPosts(posts);
+}, function (error) {
+  // eslint-disable-next-line
+  console.error(error);
+});
+
 
