@@ -1,36 +1,10 @@
 'use strict';
 
 (function () {
-  var scaleControlSmaller = document.querySelector('.scale__control--smaller');
-  var scaleControlBigger = document.querySelector('.scale__control--bigger');
-  var scaleControlValue = document.querySelector('.scale__control--value');
-
-  var uploadPreview = document.querySelector('.img-upload__preview');
   var imgUploadEffects = document.querySelector('.img-upload__effects');
   var imgUploadPreview = document.querySelector('.img-upload__preview');
   var effectLevel = document.querySelector('.img-upload__effect-level');
   var effectLevelValue = document.querySelector('.effect-level__value');
-
-
-  scaleControlSmaller.addEventListener('click', function () {
-    var value = scaleControlValue.value;
-    value = parseFloat(value);
-    value = value - 25;
-    if (value > 0) {
-      scaleControlValue.value = value + '%';
-      uploadPreview.style.transform = 'scale(' + (value / 100) + ')';
-    }
-  });
-
-  scaleControlBigger.addEventListener('click', function () {
-    var value = scaleControlValue.value;
-    value = parseFloat(value);
-    value = value + 25;
-    if (value <= 100) {
-      scaleControlValue.value = value + '%';
-      uploadPreview.style.transform = 'scale(' + (value / 100) + ')';
-    }
-  });
 
   var isDragging = false;
 
@@ -62,18 +36,18 @@
     }
   });
 
-  function setPin(percents) {
+  var setPin = function (percents) {
     pin.style.left = percents + '%';
     depth.style.width = percents + '%';
-  }
+  };
 
 
-  var filterChangeHandler = function () {
+  var resetSlider = function () {
     setPin(100);
     setFilterValue(100);
   };
 
-  imgUploadEffects.addEventListener('change', filterChangeHandler);
+  imgUploadEffects.addEventListener('change', resetSlider);
 
   var setFilterValue = function (percents) {
     effectLevelValue.value = percents;
@@ -100,6 +74,9 @@
     }
   };
 
-  imgUploadEffects.addEventListener('change', filterChangeHandler);
+  window.slider = {
+    reset: resetSlider
+  };
+
 
 })();

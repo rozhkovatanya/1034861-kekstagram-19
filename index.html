@@ -55,10 +55,7 @@
             <form
               class="img-upload__form"
               id="upload-select-image"
-              method="post"
-              enctype="multipart/form-data"
               autocomplete="off"
-              action=" https://js.dump.academy/kekstagram"
             >
               <!-- Изначальное состояние поля для загрузки изображения -->
               <fieldset class="img-upload__start">
@@ -249,6 +246,7 @@
                       class="text__hashtags"
                       name="hashtags"
                       placeholder="#хэш-тег"
+                      required
                     />
                     <textarea
                       class="text__description"
@@ -282,8 +280,6 @@
           <!-- Просмотр изображения -->
           <div class="big-picture__img">
             <img
-              src="img/logo-background-3.jpg"
-              alt="Девушка в купальнике"
               width="600"
               height="600"
             />
@@ -299,9 +295,9 @@
                 width="35"
                 height="35"
               />
-              <p class="social__caption">Тестим новую камеру! =)</p>
+              <p class="social__caption"></p>
               <p class="social__likes">
-                Нравится <span class="likes-count">356</span>
+                Нравится <span class="likes-count"></span>
               </p>
             </div>
 
@@ -310,30 +306,7 @@
 
               5 из <span class="comments-count">125</span> комментариев
             </div>
-            <ul class="social__comments">
-              <li class="social__comment">
-                <img
-                  class="social__picture"
-                  src="img/avatar-4.svg"
-                  alt="Аватар комментатора фотографии"
-                  width="35"
-                  height="35"
-                />
-                <p class="social__text">
-                  Мега фото! Просто обалдеть. Как вам так удалось?
-                </p>
-              </li>
-              <li class="social__comment">
-                <img
-                  class="social__picture"
-                  src="img/avatar-3.svg"
-                  alt="Аватар комментатора фотографии"
-                  width="35"
-                  height="35"
-                />
-                <p class="social__text">Да это фоташоп!!!!!!!!</p>
-              </li>
-            </ul>
+            <ul class="social__comments"></ul>
 
             <!-- Кнопка для загрузки новой порции комментариев -->
             <button
@@ -486,9 +459,13 @@
 
     <script src="js/picture-preview.js"></script>
 
-    <script src="js/form/validation.js"></script>
-    <script src="js/form/slider.js"></script>
-    <script src="js/form/index.js"></script>
+    <script src="js/upload-form/successMessage.js"></script>
+    <script src="js/upload-form/errorMessage.js"></script>
+    <script src="js/upload-form/uploadModal.js"></script>
+    <script src="js/upload-form/validation.js"></script>
+    <script src="js/upload-form/slider.js"></script>
+    <script src="js/upload-form/scale.js"></script>
+    <script src="js/upload-form/index.js"></script>
 
     <script src="js/main.js"></script>
   </body>

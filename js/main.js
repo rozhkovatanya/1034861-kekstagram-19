@@ -9,7 +9,6 @@ var renderPosts = function (posts) {
 };
 
 window.request.get('https://js.dump.academy/kekstagram/data', function (posts) {
-  window.globalState.posts = posts;
   renderPosts(posts);
 }, function (error) {
   // eslint-disable-next-line
