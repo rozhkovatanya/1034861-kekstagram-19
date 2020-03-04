@@ -2,32 +2,65 @@
 
 (function () {
 
-  var uploadCancel = document.querySelector('#upload-cancel');
+  var body = document.querySelector('body');
+  var imgUploadOverlay = document.querySelector('.img-upload__overlay');
   var imgUploadForm = document.querySelector('.img-upload__form');
+  var uploadCancel = document.querySelector('#upload-cancel');
 
   var hashtagInput = document.querySelector('.text__hashtags');
+  var commentInput = document.querySelector('.text__description');
 
-  uploadCancel.addEventListener('click', window.uploadModal.close);
+  var uploadCancelEscHandler = function (evt) {
+    if (evt.key === window.KEYS.ESC && evt.target !== hashtagInput && evt.target !== commentInput) {
+      closeModal();
+    }
+  };
 
-  hashtagInput.addEventListener('input', function (evt) {
+  var openModal = function () {
+    body.classList.add('modal-open');
+    imgUploadOverlay.classList.remove('hidden');
+    imgUploadForm.addEventListener('submit', onSubmitForm);
+    document.addEventListener('keydown', uploadCancelEscHandler);
+    uploadCancel.addEventListener('click', closeModal);
+    hashtagInput.addEventListener('input', onHashtagInput);
+  };
+
+  var onHashtagInput = function (evt) {
     evt.target.setCustomValidity(window.formValidation.validateHashtags(evt.target.value));
-  });
+  };
+
+  var closeModal = function () {
+    body.classList.remove('modal-open');
+    imgUploadOverlay.classList.add('hidden');
+    imgUploadForm.removeEventListener('submit', onSubmitForm);
+    document.removeEventListener('keydown', uploadCancelEscHandler);
+    uploadCancel.removeEventListener('click', closeModal);
+    hashtagInput.removeEventListener('input', onHashtagInput);
+    imgUploadForm.reset();
+    window.slider.reset();
+    window.scale.reset();
+  };
+
 
   var onError = function () {
-    window.uploadModal.close();
-    window.errorMessage.close();
+    closeModal();
+    window.errorMessage.show();
   };
 
   var onSuccess = function () {
-    window.uploadModal.close();
-    window.successMessage.close();
+    closeModal();
+    window.successMessage.show();
   };
 
-  imgUploadForm.addEventListener('submit', function (evt) {
+  var onSubmitForm = function (evt) {
     evt.preventDefault();
     if (hashtagInput.checkValidity()) {
       window.request.post('https://js.dump.academy/kekstagram', new FormData(imgUploadForm), onSuccess, onError);
     }
-  });
+  };
+
+  window.uploadModal = {
+    open: openModal,
+  };
 
 })();

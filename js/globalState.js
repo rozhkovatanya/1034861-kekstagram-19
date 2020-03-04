@@ -3,5 +3,6 @@
 (function () {
   window.globalState = {
     postsToImgMapping: {},
+    posts: []
   };
 })();
