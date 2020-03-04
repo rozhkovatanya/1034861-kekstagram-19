@@ -6,7 +6,6 @@
   var main = document.querySelector('main');
 
   var errorTemplate = document.querySelector('#error');
-
   main.appendChild(errorTemplate.content.cloneNode(true));
 
   var errorElement = main.querySelector('.error');
@@ -14,11 +13,11 @@
 
   var errorCloseButton = errorElement.querySelector('.error__button');
 
-
   var closeErrorAction = function () {
     errorElement.style.display = 'none';
     document.removeEventListener('keydown', onEscClickError);
     errorCloseButton.removeEventListener('click', closeErrorAction);
+    errorElement.removeEventListener('click', closeErrorAction);
   };
 
   var onEscClickError = function (evt) {
@@ -27,12 +26,12 @@
     }
   };
 
-
   window.errorMessage = {
-    close: function () {
-      errorElement.style.display = null;
+    show: function () {
+      errorElement.style.display = 'flex';
       document.addEventListener('keydown', onEscClickError);
       errorCloseButton.addEventListener('click', closeErrorAction);
+      errorElement.addEventListener('click', closeErrorAction);
     }
   };
 
