@@ -72,9 +72,7 @@ window.request.get('https://js.dump.academy/kekstagram/data', function (posts) {
   window.globalState.posts = posts;
   filters.classList.remove('img-filters--inactive');
   onDefaultFilterClick();
-}, function (error) {
-  // eslint-disable-next-line
-  console.error(error);
+}, function () {
 });
 
 var pictures = document.querySelector('.pictures');
