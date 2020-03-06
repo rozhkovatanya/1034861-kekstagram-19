@@ -28,6 +28,7 @@ var onDefaultFilterClick = function () {
   filterDiscussed.classList.remove('img-filters__button--active');
   window.debounce(renderPosts(window.globalState.posts));
 };
+
 filterDefault.addEventListener('click', onDefaultFilterClick);
 
 filterRandom.addEventListener('click', function () {
