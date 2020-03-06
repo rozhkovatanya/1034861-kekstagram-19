@@ -20,6 +20,7 @@
     body.classList.add('modal-open');
     imgUploadOverlay.classList.remove('hidden');
     imgUploadForm.addEventListener('submit', onSubmitForm);
+    hashtagInput.addEventListener('invalid', onInvalidForm);
     document.addEventListener('keydown', uploadCancelEscHandler);
     uploadCancel.addEventListener('click', closeModal);
     hashtagInput.addEventListener('input', onHashtagInput);
@@ -33,6 +34,7 @@
     body.classList.remove('modal-open');
     imgUploadOverlay.classList.add('hidden');
     imgUploadForm.removeEventListener('submit', onSubmitForm);
+    hashtagInput.removeEventListener('invalid', onInvalidForm);
     document.removeEventListener('keydown', uploadCancelEscHandler);
     uploadCancel.removeEventListener('click', closeModal);
     hashtagInput.removeEventListener('input', onHashtagInput);
@@ -52,11 +54,14 @@
     window.successMessage.show();
   };
 
+  var onInvalidForm = function () {
+    hashtagInput.style.cssText = 'border: 4px red solid;';
+  };
+
   var onSubmitForm = function (evt) {
     evt.preventDefault();
-    if (hashtagInput.checkValidity()) {
-      window.request.post('https://js.dump.academy/kekstagram', new FormData(imgUploadForm), onSuccess, onError);
-    }
+    hashtagInput.style.cssText = '';
+    window.request.post('https://js.dump.academy/kekstagram', new FormData(imgUploadForm), onSuccess, onError);
   };
 
   window.uploadModal = {
