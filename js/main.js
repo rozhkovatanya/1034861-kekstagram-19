@@ -14,8 +14,19 @@ var renderPosts = function (posts) {
   });
 };
 
+var uploadPictureElement = document.querySelector('.img-upload__preview > img');
 var uploadFileInput = document.querySelector('#upload-file');
-uploadFileInput.addEventListener('change', window.uploadModal.open);
+uploadFileInput.addEventListener('change', function (e) {
+  switch (e.target.files[0] && e.target.files[0].type) {
+    case 'image/png':
+    case 'image/jpeg':
+      uploadPictureElement.src = URL.createObjectURL(e.target.files[0]);
+      window.uploadModal.open();
+      break;
+    default:
+      window.errorMessage.show();
+  }
+});
 
 var filters = document.querySelector('.img-filters');
 var filterDefault = document.querySelector('#filter-default');
