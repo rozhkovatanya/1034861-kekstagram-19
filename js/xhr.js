@@ -1,6 +1,10 @@
 'use strict';
 
 (function () {
+
+  var TEN_SECONDS = 10000; // ms
+  var DEFAULT_TIMEOUT = TEN_SECONDS;
+
   window.request = {
     get: function (url, onLoad, onError) {
       var xhr = new XMLHttpRequest();
@@ -23,7 +27,7 @@
         onError('Запрос не успел выполниться за ' + xhr.timeout + 'мс');
       });
 
-      xhr.timeout = 10000; // 10s
+      xhr.timeout = DEFAULT_TIMEOUT;
 
       xhr.open('GET', url, true);
       xhr.send();
@@ -50,7 +54,7 @@
         onError('Запрос не успел выполниться за ' + xhr.timeout + 'мс');
       });
 
-      xhr.timeout = 10000; // 10s
+      xhr.timeout = DEFAULT_TIMEOUT;
 
       xhr.open('POST', url, true);
       xhr.send(data);

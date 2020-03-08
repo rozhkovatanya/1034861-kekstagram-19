@@ -10,8 +10,8 @@
       socialPicture.className = 'social__picture';
       socialPicture.src = comment.avatar;
       socialPicture.alt = comment.name;
-      socialPicture.width = '35';
-      socialPicture.height = '35';
+      socialPicture.width = '35'; // px
+      socialPicture.height = '35'; // px
 
       var commentBody = document.createElement('p');
       commentBody.className = 'social__text';

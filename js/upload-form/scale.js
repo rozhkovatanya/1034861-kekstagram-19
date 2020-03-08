@@ -9,10 +9,12 @@
 
   uploadPreview.style.transition = '0.2s transform';
 
+  var ZOOM_SCALE_STEP_SIZE = 25;
+
   scaleControlSmaller.addEventListener('click', function () {
     var value = scaleControlValue.value;
     value = parseFloat(value);
-    value = value - 25;
+    value = value - ZOOM_SCALE_STEP_SIZE;
     if (value > 0) {
       scaleControlValue.value = value + '%';
       uploadPreview.style.transform = 'scale(' + (value / 100) + ')';
@@ -22,7 +24,7 @@
   scaleControlBigger.addEventListener('click', function () {
     var value = scaleControlValue.value;
     value = parseFloat(value);
-    value = value + 25;
+    value = value + ZOOM_SCALE_STEP_SIZE;
     if (value <= 100) {
       scaleControlValue.value = value + '%';
       uploadPreview.style.transform = 'scale(' + (value / 100) + ')';
