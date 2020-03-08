@@ -50,13 +50,15 @@
     return shown + ' из <span class="comments-count">' + from + '</span> комментариев';
   };
 
+  var COMMENTS_PAGE_SIZE = 5;
+
   var commentsRenderingEngine = function (post) {
     var numberOfComments = post.comments.length;
-    if (numberOfComments <= 5) {
+    if (numberOfComments <= COMMENTS_PAGE_SIZE) {
       socialCommentCount.innerHTML = commentCounterTemplate(numberOfComments, numberOfComments);
       appendCommentElements(socialComments, post.comments);
     } else {
-      var numberShift = numberOfCommentsShown + 5;
+      var numberShift = numberOfCommentsShown + COMMENTS_PAGE_SIZE;
       numberOfCommentsShown = numberShift > numberOfComments ? numberOfComments : numberShift;
       socialCommentCount.innerHTML = commentCounterTemplate(numberOfCommentsShown, numberOfComments);
       loadCommentsButton.classList.remove('hidden');
