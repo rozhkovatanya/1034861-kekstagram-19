@@ -38,6 +38,7 @@
     document.removeEventListener('keydown', uploadCancelEscHandler);
     uploadCancel.removeEventListener('click', closeModal);
     hashtagInput.removeEventListener('input', onHashtagInput);
+    hashtagInput.style.cssText = '';
     imgUploadForm.reset();
     window.slider.reset();
     window.scale.reset();
